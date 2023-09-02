@@ -5,7 +5,6 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
 
         if not root:
@@ -34,10 +33,6 @@ class Solution:
         else:
             return False
 
-
-
-
-
     # def sym(self, a: Optional[TreeNode], b: Optional[TreeNode]):
     #     if not a and not b:
     #         return True
@@ -52,8 +47,6 @@ class Solution:
     #         return False
 
     #     return self.sym(a.right, b.left) and self.sym(b.right, a.left)
-
-
 
     # def isSymmetric(self, root: Optional[TreeNode]) -> bool:
 

@@ -11,8 +11,8 @@ vector или её аналога в используемом вами язык�
 
 from typing import Any
 
-class Stack:
 
+class Stack:
     def __init__(self):
         self._stack: list = []
 
@@ -24,13 +24,7 @@ class Stack:
         print("ok")
 
     def pop(self) -> Any:
-        try: 
+        try:
             return self._stack.pop()
         except IndexError:
             print("error")
-         
-    
-
-
-
-

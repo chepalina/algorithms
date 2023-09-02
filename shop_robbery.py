@@ -64,8 +64,6 @@
 , то ни одна клавиатура не была украдена из магазина."""
 
 
-
-
 def count_stolen_items(remainder: int, number_list: list) -> int:
     """Сложность - O(n) + O(n) = O(n)"""
 
@@ -75,9 +73,9 @@ def count_stolen_items(remainder: int, number_list: list) -> int:
 
     return actual_count - remainder
 
+
 print(count_stolen_items(4, [10, 13, 12, 8]))
 print(count_stolen_items(5, [7, 5, 6, 4, 8]))
-
 
 
 """

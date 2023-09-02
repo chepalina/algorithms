@@ -6,15 +6,15 @@
 """
 
 
-m1 = [1,2,3]
-m2 = [1,1,1]
+m1 = [1, 2, 3]
+m2 = [1, 1, 1]
 m3 = [100]
 
 m_list = [m1, m2, m3]
 
 # pointers = [0] * len(m_list)
 
-counter ={i: 0 for i in range(101)}
+counter = {i: 0 for i in range(101)}
 
 for l in m_list:
     for element in l:
@@ -30,10 +30,10 @@ for key, value in counter.items():
 print(target)
 
 
-dict = {1:0, 0:1, 3:10}
+dict = {1: 0, 0: 1, 3: 10}
 
-print( {key:0 for key in range(-100, 101)})
-d = {key:0 for key in range(-100, 101)}
+print({key: 0 for key in range(-100, 101)})
+d = {key: 0 for key in range(-100, 101)}
 
 
 print(d.get(5))

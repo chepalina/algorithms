@@ -4,6 +4,7 @@ from typing import List
 # норм solution
 # https://www.youtube.com/watch?v=GBKI9VSKdGg
 
+
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
 
@@ -27,15 +28,11 @@ class Solution:
             curr_cp.append(candidates[i])
             rec(i, curr_cp)
 
-            rec(i+1, curr)
+            rec(i + 1, curr)
 
         rec(0, [])
 
         return res
-
-
-
-
 
 
 class Solution:
@@ -56,8 +53,6 @@ class Solution:
 
         return [list(i) for i in self.TARGET_RES]
 
-
-
     def backtrack(self, current, candidates, target):
 
         sum_ = sum(current)
@@ -77,17 +72,20 @@ class Solution:
                 self.backtrack(c, candidates, target)
 
 
-
 s = Solution()
 # s.combinationSum(candidates = [2,3,6,7], target = 7)
 
-assert s.combinationSum(candidates = [2,3,6,7], target = 7) == [[2, 2, 3], [7]]
+assert s.combinationSum(candidates=[2, 3, 6, 7], target=7) == [[2, 2, 3], [7]]
 s = Solution()
-assert s.combinationSum(candidates =[2,3,5], target = 8) == [[2,2,2,2],[2,3,3],[3,5]]
+assert s.combinationSum(candidates=[2, 3, 5], target=8) == [
+    [2, 2, 2, 2],
+    [2, 3, 3],
+    [3, 5],
+]
 
 
 s = Solution()
-assert s.combinationSum(candidates =[2], target = 1) == []
+assert s.combinationSum(candidates=[2], target=1) == []
 
 
 """The complexity of the provided code can be analyzed as follows:

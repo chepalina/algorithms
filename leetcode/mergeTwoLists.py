@@ -1,6 +1,7 @@
 # Definition for singly-linked list.
 from typing import Optional
 
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -8,7 +9,9 @@ class ListNode:
 
 
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
 
         current = head = ListNode()
 
@@ -26,16 +29,15 @@ class Solution:
         return head.next
 
 
-
-
-
-
 # не заработало (лимит по времени)
 
-class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
 
-        counter_ = {key:0 for key in range(-100, 101)}
+class Solution:
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
+
+        counter_ = {key: 0 for key in range(-100, 101)}
 
         while list1 is not None and list2 is not None:
             if list1.next is not None:
@@ -47,25 +49,12 @@ class Solution:
             count = counter_.get(l.val)
             counter_[l.val] = count or 1
 
-
         prev = None
         head = None
         for key, value in reversed(counter_.items()):
             if value > 0:
                 for num in range(value):
                     head = ListNode(val=key, next=prev)
-                    prev=head
-
+                    prev = head
 
         return head
-
-
-
-
-
-
-
-
-
-
-

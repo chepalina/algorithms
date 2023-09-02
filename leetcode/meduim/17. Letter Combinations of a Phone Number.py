@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         # 012 012 -> 00 01 02 10 11 12 20 21 22
@@ -13,11 +14,10 @@ class Solution:
             "6": "mno",
             "7": "pqrs",
             "8": "tuv",
-            "9": "wxyz"
+            "9": "wxyz",
         }
         if not digits:
             return []
-
 
         target_list = [i for i in digits_map.get(digits[0])]
 
@@ -27,10 +27,8 @@ class Solution:
             temp = []
             for t in target_list:
                 for c in current:
-                    temp.append(t+c)
+                    temp.append(t + c)
 
             target_list = temp
 
         return target_list
-
-

@@ -1,6 +1,5 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-
         def create_dict(s):
             temp_dict = {}
 
@@ -9,8 +8,6 @@ class Solution:
                 temp_dict[char] = value
 
             return temp_dict
-
-
 
         targets = [[strs[0]]]
         for index in range(1, len(strs)):
@@ -32,18 +29,14 @@ class SolutionOPTIMAL:
         buckets = {}
 
         for s in strs:
-            vector = {i:0 for i in 'abcdefghnt'}
+            vector = {i: 0 for i in "abcdefghnt"}
             for char in s:
                 vector[char] += 1
 
-            key = ''.join(str(vector.items()))
+            key = "".join(str(vector.items()))
 
             b = buckets.get(key, [])
             b.append(s)
             buckets[key] = b
 
-
-
         return buckets.values()
-
-

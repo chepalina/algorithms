@@ -3,16 +3,15 @@ from typing import Any
 
 # 3.3
 
+
 class EmptyStackError(Exception):
     pass
 
 
 class SetOfStack:
-
     def __init__(self, capacity: int):
         self._stack_storage = []
         self._capacity = capacity
-
 
     def push(self, value: Any):
         stack = self._create_new() if self.is_empty() else self._get_last()
@@ -62,8 +61,6 @@ class SetOfStack:
             raise ValueError(f"There are {len(self._stack_storage)} stacks.") from e
 
 
-
-
 s = SetOfStack(3)
 
 s.push(1)
@@ -71,7 +68,7 @@ s.push(2)
 s.push(3)
 s.push(4)
 
-assert s._stack_storage == [[1,2,3], [4]]
+assert s._stack_storage == [[1, 2, 3], [4]]
 assert s.pop() == 4
 assert s.pop() == 3
 assert s.pop() == 2
@@ -89,7 +86,6 @@ else:
 
 
 class Stack:
-
     def __init__(self):
         self._stack = []
 
@@ -107,7 +103,6 @@ class Stack:
 
 
 class MyQueue:
-
     def __init__(self):
         self._newest = Stack()
         self._oldest = Stack()
@@ -132,8 +127,6 @@ class MyQueue:
             self._oldest.push(self._newest.pop())
 
 
-
-
 q = MyQueue()
 q.add(1)
 q.add(2)
@@ -146,19 +139,3 @@ q.add(4)
 assert q.remove() == 2
 assert q.remove() == 3
 assert q.remove() == 4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -23,24 +23,18 @@ class Solution:
             haystack_lag = haystack_i
 
             while haystack[haystack_lag] == needle[needle_i]:
-                haystack_lag +=1
+                haystack_lag += 1
                 needle_i += 1
-
 
                 if needle_i == len(needle):
                     return haystack_i
 
             needle_i = 0
 
-
         return -1
 
 
-
 assert Solution().strStr("abababd", "ababd") == 2
-
-
-
 
 
 class Solution:
@@ -60,7 +54,6 @@ class Solution:
         # ! некорректный для кейса
         # "ababd" "abababd" -> 2
 
-
         j = 0
         for i in range(len(haystack)):
 
@@ -73,5 +66,3 @@ class Solution:
                 j = 0
 
         return -1
-
-

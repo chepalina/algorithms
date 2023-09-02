@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """
@@ -22,14 +23,13 @@ class Solution:
         while n > 0:
 
             if m == 0:
-                nums1[target_index] = nums2[n-1]
+                nums1[target_index] = nums2[n - 1]
                 n -= 1
                 target_index -= 1
                 continue
 
-            element1 = nums1[m-1]
-            element2 = nums2[n-1]
-
+            element1 = nums1[m - 1]
+            element2 = nums2[n - 1]
 
             if element1 > element2:
                 nums1[target_index] = element1
@@ -45,7 +45,7 @@ s = Solution()
 
 
 nums = [1, 1, 1]
-s.merge([1, 1, 1], 3, [],0)
+s.merge([1, 1, 1], 3, [], 0)
 assert nums == [1, 1, 1], nums
 
 nums = [0, 0]

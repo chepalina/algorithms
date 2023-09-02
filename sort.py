@@ -9,7 +9,7 @@ Cортировка выбором.
 """
 
 
-input = [5,6,2,3]
+input = [5, 6, 2, 3]
 
 
 def sort(list_to_sort):
@@ -41,8 +41,7 @@ def sort(list_to_sort):
 print("Cортировка выбором 1. ", sort(input))
 
 
-
-input = [5,6,2,3]
+input = [5, 6, 2, 3]
 
 input_len = len(input)
 unsorted_index = 0
@@ -50,10 +49,10 @@ unsorted_index = 0
 while unsorted_index < input_len:
 
     min_index = unsorted_index
-    for i in range (unsorted_index ,input_len) :
-        if input[ i] < input[ min_index ]:
+    for i in range(unsorted_index, input_len):
+        if input[i] < input[min_index]:
             min_index = i
-    input[ unsorted_index], input[ min_index ] = input[ min_index ], input[ unsorted_index]
+    input[unsorted_index], input[min_index] = input[min_index], input[unsorted_index]
     unsorted_index += 1
 
 print("Cортировка выбором 2. ", input)
@@ -78,7 +77,6 @@ print (a)
 """
 
 
-
 """
 Сортировка вставками.
 
@@ -90,23 +88,22 @@ print (a)
 [5,6,2,3] [5,6,2,3] [5,6,2,3] [2,5,6,3] [2,3,5,6]
 """
 
-input = [5,6,2,3]
+input = [5, 6, 2, 3]
 sorted_index = 1
 
 while sorted_index < len(input):
     for i in range(sorted_index, 0, -1):
-        if input[i] < input[i-1]:
-            input[i], input[i-1] = input[i-1], input[i]
+        if input[i] < input[i - 1]:
+            input[i], input[i - 1] = input[i - 1], input[i]
 
-        # оптимизация, для раннего выхода 
-        if input[i] > input[i-1]:
+        # оптимизация, для раннего выхода
+        if input[i] > input[i - 1]:
             continue
 
     sorted_index += 1
 
 
 print("Сортировка вставками. ", input)
-
 
 
 """
@@ -121,13 +118,13 @@ print("Сортировка вставками. ", input)
 Пример одного прохода: [5,3,6,2] [3,5,6,2] [3,5,6,2] [3,5,2,6]"""
 
 
-input = [5,6,2,3]
+input = [5, 6, 2, 3]
 current_itaration = 0
 
 while current_itaration < len(input):
-    for i in range(0, len(input) - 1 - current_itaration) :
-        if input[i] > input[i+1]:
-            input[i], input[i+1] = input[i+1], input[i]
+    for i in range(0, len(input) - 1 - current_itaration):
+        if input[i] > input[i + 1]:
+            input[i], input[i + 1] = input[i + 1], input[i]
 
     current_itaration += 1
 

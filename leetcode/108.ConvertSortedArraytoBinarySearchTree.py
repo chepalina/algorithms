@@ -5,7 +5,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
-        
+
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
 
@@ -15,10 +15,9 @@ class Solution:
         left = 0
         right = len(nums)
 
-        middle = (left + right) //2
+        middle = (left + right) // 2
 
-        left_node=self.sortedArrayToBST(nums[0:middle])
-        right_node=self.sortedArrayToBST(nums[middle+1:right])
+        left_node = self.sortedArrayToBST(nums[0:middle])
+        right_node = self.sortedArrayToBST(nums[middle + 1 : right])
 
-        return TreeNode(nums[middle],left_node,right_node)
-
+        return TreeNode(nums[middle], left_node, right_node)

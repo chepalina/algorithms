@@ -9,10 +9,9 @@ class Solution:
 
         max_len = 0
 
-
         for i in range(len(s)):
 
-            outer_substr = s[i:len(s)]
+            outer_substr = s[i : len(s)]
 
             for j in range(len(outer_substr)):
 
@@ -20,7 +19,6 @@ class Solution:
 
                 if len(inner_susbstr) == len(set(inner_susbstr)):
                     max_len = max(max_len, len(inner_susbstr))
-
 
         return max_len
 
@@ -31,7 +29,7 @@ class SolutionOptimal:
         # "abcabcbb" -> 3
 
         max_len = 0
-        substr = ''
+        substr = ""
 
         for i in range(len(s)):
             element = s[i]
@@ -39,7 +37,7 @@ class SolutionOptimal:
                 substr += s[i]
             else:
                 duplicate_index = substr.index(s[i])
-                substr = substr[duplicate_index+1:] + s[i]
+                substr = substr[duplicate_index + 1 :] + s[i]
 
             # print(substr)
 
@@ -47,8 +45,8 @@ class SolutionOptimal:
 
         return max_len
 
-class SolutionNew:
 
+class SolutionNew:
     def lengthOfLongestSubstring(self, s: str) -> int:
 
         substr = ""
@@ -59,12 +57,11 @@ class SolutionNew:
                 substr = substr + i
             else:
                 index = substr.find(i)
-                substr = substr[index+1:] + i
+                substr = substr[index + 1 :] + i
 
             max_len = max(max_len, len(substr))
 
         return max_len
-
 
 
 s = SolutionNew()

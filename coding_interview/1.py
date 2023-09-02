@@ -186,16 +186,15 @@ m = [[1, 2, 3], [4, 0, 6], [7, 8, 9]]
 
 # 1.9
 
+
 def check_string_rotation(s1, s2):
     if len(s1) != len(s2):
         return False
 
-    temp = s1+s1
+    temp = s1 + s1
     return s2 in temp
-
 
 
 assert check_string_rotation("watterbottle", "terbottlewat") is True
 assert check_string_rotation("watterbottle", "terbottlwat") is False
 assert check_string_rotation("watterbottl", "terbottlewat") is False
-

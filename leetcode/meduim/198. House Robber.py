@@ -12,12 +12,6 @@ class Solution:
 
         return rob1
 
-
-
-
-
-
-
     def rob_3_vars(self, nums: List[int]) -> int:
 
         if len(nums) <= 2:
@@ -31,8 +25,6 @@ class Solution:
 
         return max(n_2, n_1)
 
-
-
     def rob_list(self, nums: List[int]) -> int:
 
         if len(nums) <= 2:
@@ -41,14 +33,12 @@ class Solution:
         _temp = [nums[0], nums[1], nums[2] + nums[0]]
 
         for i in range(3, len(nums)):
-            current_max = max(nums[i] + _temp[i-2], nums[i] + _temp[i-3])
+            current_max = max(nums[i] + _temp[i - 2], nums[i] + _temp[i - 3])
             _temp.append(current_max)
 
         return max(_temp[-1], _temp[-2])
 
 
-
 s = Solution()
 
-assert s.rob([10,1,1,10]) == 20
-
+assert s.rob([10, 1, 1, 10]) == 20

@@ -36,7 +36,7 @@ class Solution:
             if root:
                 st.append(root)
                 root = root.left
-            else :
+            else:
                 root = st.pop()
                 ans.append(root.val)
                 root = root.right
@@ -44,10 +44,6 @@ class Solution:
         return ans
 
         # st = 1 r=2 -> st= 1 2 r=None ->
-
-
-
-
 
 
 s = Solution().inorderTraversal(one)
@@ -62,7 +58,11 @@ class Solution1:
         if not root:
             return []
 
-        return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
+        return (
+            self.inorderTraversal(root.left)
+            + [root.val]
+            + self.inorderTraversal(root.right)
+        )
 
 
 s = Solution1().inorderTraversal(one)

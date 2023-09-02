@@ -239,7 +239,10 @@ assert _compare_nodes(
     Node(val=2, next=(Node(val=1, next=Node(val=9, next=None)))),
 )
 assert _compare_nodes(
-    node_sum(Node(val=2, next=(Node(val=1, next=Node(val=9, next=None)))), Node(val=2, next=None)),
+    node_sum(
+        Node(val=2, next=(Node(val=1, next=Node(val=9, next=None)))),
+        Node(val=2, next=None),
+    ),
     Node(val=4, next=(Node(val=1, next=Node(val=9, next=None)))),
 )
 
@@ -294,10 +297,9 @@ def node_sum_rec(n1, n2):
     return sum_node.sum
 
 
-
-
 def make_len_eq(n1, n2):
     pass
+
 
 def sum_rec(n1, n2):
 
@@ -307,12 +309,11 @@ def sum_rec(n1, n2):
     sum_node = sum_rec(n1.next, n2.next)
 
     val = n1.val + n2.val + sum_node.carry
-    sum_val, carry = val%10, val//10
+    sum_val, carry = val % 10, val // 10
 
     node = Node(val=sum_val, next=sum_node.sum)
 
     return SumNode(node, carry)
-
 
 
 assert _compare_nodes(
@@ -329,7 +330,7 @@ p_node = Node(val=7, next=(Node(val=1, next=Node(val=7, next=None))))
 def check_palindrome(node):
 
     length = get_len(node)
-    stack = check_palindrome_rec(Stack(node=node,is_palindrome=True), length=length)
+    stack = check_palindrome_rec(Stack(node=node, is_palindrome=True), length=length)
     return stack.is_palindrome
 
 
@@ -341,19 +342,18 @@ class Stack:
 
 def check_palindrome_rec(node: Stack, length):
 
-    if length == 0: # четное
+    if length == 0:  # четное
         return Stack(node=node.node)
     if length == 1:  # нечетное
         # node.next - центр, его пропускаем и берем следующую ноду
         return Stack(node=node.node.next)
 
-    length = length-2
+    length = length - 2
     front_node = node.node
     stack = check_palindrome_rec(Stack(node=front_node.next), length)
     reversed_node = stack.node
-    is_palindrome = stack.is_palindrome and (front_node.val==reversed_node.val)
+    is_palindrome = stack.is_palindrome and (front_node.val == reversed_node.val)
     return Stack(node=reversed_node.next, is_palindrome=is_palindrome)
-
 
 
 def get_len(node):
@@ -366,12 +366,12 @@ def get_len(node):
 
 
 assert check_palindrome(p_node) is True
-not_palindrome  = Node(val=7, next=(Node(val=1, next=Node(val=3, next=None))))
+not_palindrome = Node(val=7, next=(Node(val=1, next=Node(val=3, next=None))))
 assert check_palindrome(not_palindrome) is False
-palindrome  = Node(val=7, next=(Node(val=2, next=Node(val=2, next=Node(val=7, next=None)))))
+palindrome = Node(
+    val=7, next=(Node(val=2, next=Node(val=2, next=Node(val=7, next=None))))
+)
 assert check_palindrome(palindrome) is True
-
-
 
 
 # 2.7
@@ -391,14 +391,14 @@ def find_intersection(n1, n2):
         return
 
     if len_n1 > len_n2:
-        for _ in range(len_n1-len_n2):
+        for _ in range(len_n1 - len_n2):
             n1 = n1.next
 
     if len_n2 > len_n1:
-        for _ in range(len_n2-len_n1):
+        for _ in range(len_n2 - len_n1):
             n2 = n2.next
 
-    for _ in range(min(len_n1,len_n2)):
+    for _ in range(min(len_n1, len_n2)):
         if n1 == n2:
             return n1
 
@@ -420,8 +420,8 @@ def find_len_and_tail(n):
     return counter, n
 
 
-assert find_intersection(p_node_1,p_node_2) == p_node_intersect
-assert find_intersection(p_node_1,p_node) is None
+assert find_intersection(p_node_1, p_node_2) == p_node_intersect
+assert find_intersection(p_node_1, p_node) is None
 
 
 # 2.8
@@ -456,7 +456,6 @@ def detect_loop(n):
 
     print(f"collision on {slow_pointer.val}, {fast_pointer.val}")
 
-
     slow_pointer = n
     fast_pointer = fast_pointer.next
     while slow_pointer != fast_pointer:
@@ -465,9 +464,5 @@ def detect_loop(n):
 
     return slow_pointer
 
+
 print(detect_loop(p_node_loop).val)
-
-
-
-
-

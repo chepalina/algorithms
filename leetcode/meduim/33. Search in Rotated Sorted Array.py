@@ -14,7 +14,7 @@ class Solution:
             right_r = len(nums)
 
             while left_r <= right_r:
-                middle = (right_r + left_r)//2
+                middle = (right_r + left_r) // 2
 
                 # если случайно попали в нужный элемент
                 if nums[middle] == target:
@@ -29,14 +29,14 @@ class Solution:
                 left = 0
                 right = right_r
             else:
-                left = right_r +1
+                left = right_r + 1
                 right = len(nums)
         else:
             left = 0
             right = len(nums)
 
         while left <= right:
-            middle = (right + left)//2
+            middle = (right + left) // 2
 
             if nums[middle] == target:
                 return middle
@@ -47,9 +47,3 @@ class Solution:
                 left = middle + 1
 
         return -1
-
-
-
-
-
-

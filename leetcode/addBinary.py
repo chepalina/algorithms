@@ -26,7 +26,7 @@ class Solution:
 
         common_index = min(len(a), len(b))
 
-        for i in range(1, common_index+1):
+        for i in range(1, common_index + 1):
 
             target_int = int(a[-i]) + int(b[-i]) + add
             if target_int == 0:
@@ -44,7 +44,7 @@ class Solution:
 
         remainder_str = a if len(a) > len(b) else b
 
-        for i in range(common_index+1, max(len(a), len(b))+1):
+        for i in range(common_index + 1, max(len(a), len(b)) + 1):
             target_int = int(remainder_str[-i]) + add
             if target_int == 0:
                 target_str = "0" + target_str
@@ -60,8 +60,6 @@ class Solution:
             target_str = "1" + target_str
 
         return target_str
-
-
 
 
 class Solution1:
@@ -82,10 +80,14 @@ class Solution1:
 
         # прибавляем 1 для обработки последнего значения
         for i in range(max(len(a), len(b))):
-            sum = add + (int(a[i]) if i < len(a) else 0) + (int(b[i]) if i < len(b) else 0)
+            sum = (
+                add
+                + (int(a[i]) if i < len(a) else 0)
+                + (int(b[i]) if i < len(b) else 0)
+            )
 
-            target += str(1 if sum%2 != 0 else 0)
-            add = sum//2
+            target += str(1 if sum % 2 != 0 else 0)
+            add = sum // 2
 
         if add:
             target += "1"
@@ -98,9 +100,9 @@ s = Solution1()
 
 # print( '"0" "0" -> "0" actual ', s.addBinary("0","0"))
 # print( '"1" "0" -> "1" actual ', s.addBinary("1","0"))
-print( '"1" "1" -> "10" actual ', s.addBinary("1","1"))
-print( '"11" "11" -> "110" actual ', s.addBinary("11","11"))
-print( '"111" "0" -> "111" actual ', s.addBinary("111","0"))
-print( '"111" "111" -> "1110 actual ', s.addBinary("111","111"))
-print( '"111" "1000" -> "1111 actual ', s.addBinary("111","1000"))
-print( '"1000" "1000" -> "10000 actual ', s.addBinary("1000","1000"))
+print('"1" "1" -> "10" actual ', s.addBinary("1", "1"))
+print('"11" "11" -> "110" actual ', s.addBinary("11", "11"))
+print('"111" "0" -> "111" actual ', s.addBinary("111", "0"))
+print('"111" "111" -> "1110 actual ', s.addBinary("111", "111"))
+print('"111" "1000" -> "1111 actual ', s.addBinary("111", "1000"))
+print('"1000" "1000" -> "10000 actual ', s.addBinary("1000", "1000"))

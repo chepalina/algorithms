@@ -31,16 +31,9 @@ class Solution:
 
             head = second.next
 
-
             prev.next = second
             second.next = first
             prev = first
             first.next = None
 
-
-
         return new_head
-
-
-
-

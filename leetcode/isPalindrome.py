@@ -14,10 +14,8 @@ class Solution:
         reverse = 0
 
         while x != 0:
-            remainder = x%10
+            remainder = x % 10
             x //= 10
-            reverse = reverse*10 + remainder
+            reverse = reverse * 10 + remainder
 
-        return (input == reverse)
-
-
+        return input == reverse

@@ -30,7 +30,6 @@ import sys
 # 100111 -> 3
 
 
-
 # max_seq = 0
 # max_cur_seq = 0
 #
@@ -114,7 +113,6 @@ import sys
 # foo('', 0, 0, n)
 
 
-
 # d1 = {"s": 1, "l":2}
 # d2 = {"l":2, "s":1}
 #
@@ -124,6 +122,7 @@ import sys
 # №6
 
 import sys
+
 n = int(sys.stdin.readline().strip())
 
 cities = []
@@ -160,17 +159,15 @@ def find_city(city_start, city_finish, cities, iter):
     next_cities = []
     iter += 1
 
-
     for city in cities:
-        distance = abs(int(city[0]) - int(city_start[0])) + abs(int(city[1]) - int(city_start[1]))
+        distance = abs(int(city[0]) - int(city_start[0])) + abs(
+            int(city[1]) - int(city_start[1])
+        )
         if distance <= max_distance:
             x = find_city(city, city_finish, copy_cities, iter)
             all_cities.append(x)
     print(all_cities)
     return max(all_cities)
-
-
-
 
 
 copy_cities = cities.copy()
@@ -179,7 +176,9 @@ iter = 1
 
 next_cities = []
 for city in copy_cities:
-    distance = abs(int(city[0]) - int(city_start[0])) + abs(int(city[1]) - int(city_start[1]))
+    distance = abs(int(city[0]) - int(city_start[0])) + abs(
+        int(city[1]) - int(city_start[1])
+    )
     if distance <= max_distance:
         next_cities.append(city)
 
@@ -194,23 +193,19 @@ while queue:
 
     else:
         for city in copy_cities:
-            distance = abs(int(city[0]) - int(city_start[0])) + abs(int(city[1]) - int(city_start[1]))
+            distance = abs(int(city[0]) - int(city_start[0])) + abs(
+                int(city[1]) - int(city_start[1])
+            )
             if distance <= max_distance:
                 nx = n.copy()
                 nx.remove(city)
-                queue.append(city, nx, )
+                queue.append(
+                    city,
+                    nx,
+                )
 
 
 print(-1)
 
 
-
-
-
 iter += 1
-
-
-
-
-
-

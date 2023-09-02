@@ -1,9 +1,10 @@
 from typing import List
 
+
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
 
-        bit_vector = [0] * 10**4
+        bit_vector = [0] * 10 ** 4
 
         for i in intervals:
             for element in range(i[0], i[1]):
@@ -44,14 +45,14 @@ class SolutionCounter:
         for bit_index in range(len(bit_vector)):
             print(bit_index, bit_vector[bit_index])
             if bit_vector[bit_index] == 1:
-                counter +=1
+                counter += 1
 
             elif counter > 0:
-                target.append([bit_index-counter, bit_index])
+                target.append([bit_index - counter, bit_index])
                 counter = 0
 
         return target
 
 
 s = SolutionCounter()
-s.merge(intervals = [[1,3],[2,6],[8,10],[15,18]])
+s.merge(intervals=[[1, 3], [2, 6], [8, 10], [15, 18]])

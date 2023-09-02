@@ -4,7 +4,9 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    def addTwoNumbers(
+        self, l1: Optional[ListNode], l2: Optional[ListNode]
+    ) -> Optional[ListNode]:
 
         # [1,0,0,1] [2]
         # [1,0,0,1] []
@@ -28,10 +30,10 @@ class Solution:
             if not l2:
                 l2 = ListNode(0, None)
 
-            value = l1.val +  l2.val + add
+            value = l1.val + l2.val + add
 
             if value >= 10:
-                value = value%10
+                value = value % 10
                 add = 1
             else:
                 add = 0
@@ -48,7 +50,6 @@ class Solution:
             l1 = l1.next
             l2 = l2.next
 
-
         if add == 1:
             current.next = ListNode(1, None)
 
@@ -56,5 +57,3 @@ class Solution:
 
 
 # (8 add =1) (9 add=1) (9 add=1) (9 add = 1) (0 add =1) ()
-
-

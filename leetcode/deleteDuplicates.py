@@ -47,9 +47,8 @@ class Solution:
         return pointer
 
 
-
-
 # beautiful
+
 
 def deleteDuplicates(self, head):
     curr = head

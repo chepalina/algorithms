@@ -13,7 +13,7 @@ class Solution:
         target = 0
         breakpoint_ = False
 
-        digits = '0123456789'
+        digits = "0123456789"
 
         for element in s:
             if element == " " and not breakpoint_:
@@ -32,19 +32,16 @@ class Solution:
                 break
             else:
                 breakpoint_ = True
-                target = target*10 + int(element)
+                target = target * 10 + int(element)
 
-            if target > 2**31:
+            if target > 2 ** 31:
                 return 0
 
         target = target * (sign or 1)
-        if target > 2**31 - 1 or target < -2**31:
+        if target > 2 ** 31 - 1 or target < -(2 ** 31):
             return 0
 
         return target
-
-
-
 
 
 s = Solution()
@@ -55,4 +52,4 @@ assert s.myAtoi("333_=.") == 333
 assert s.myAtoi("..._+_   654") == 0
 assert s.myAtoi("-1") == -1
 assert s.myAtoi("     -1") == -1, s.myAtoi("     -1")
-assert s.myAtoi("1 6" ) == 1, s.myAtoi("1 6" )
+assert s.myAtoi("1 6") == 1, s.myAtoi("1 6")

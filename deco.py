@@ -8,13 +8,13 @@ def deco_params(a):
         def inner(*args, **kwargs):
             print(f"Inner decorator {a}")
             return fn(*args, **kwargs)
+
         return inner
+
     return deco
 
 
-
 class Decorator:
-
     def __init__(self, a):
         self.a = a
 
@@ -22,8 +22,8 @@ class Decorator:
         def inner(*args, **kwargs):
             print(f"Inner decorator {self.a}")
             return fn(*args, **kwargs)
-        return inner
 
+        return inner
 
 
 @Decorator(1)
@@ -31,14 +31,4 @@ def a():
     pass
 
 
-
-
-
-
-
-
-
 a()
-
-
-

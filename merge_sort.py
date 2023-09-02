@@ -1,4 +1,5 @@
-"""Сортировка слиянием.
+"""
+Сортировка слиянием.
 
 "Разделяй и властвуй"
 Делим массив пополам на две части: левую и правую
@@ -10,7 +11,7 @@
 Итого O(n log n)
 """
 
-x = [3, 6, 1, 10, 2,7,9]
+x = [3, 6, 1, 10, 2, 7, 9]
 
 
 # корректный алгоритм со слайсами
@@ -57,7 +58,7 @@ def sort_3(input_list: list) -> list:
     middle = len(input_list) // 2
 
     print("call l_sort")
-    l = sort_3(input_list[:middle]) # правая половина больше левой
+    l = sort_3(input_list[:middle])  # правая половина больше левой
     print("call r_sort")
     r = sort_3(input_list[middle:])
 
@@ -67,18 +68,19 @@ def sort_3(input_list: list) -> list:
 # print(sort_3(x))
 
 
-
 # алгоритм на индексах
 # алгоритм merge некорректный, нужно ходить кучей проходов, чтобы не затрачивать доп память
 
-x = [1,4,10,2,8, 15,200, 3, 7]
+x = [1, 4, 10, 2, 8, 15, 200, 3, 7]
 
 
 def merge(input_list, first_left, first_right, second_left, second_right):
     first_index = first_left
     second_index = second_left
 
-    print(f"rigth = {input_list[first_index:first_right+1]} , left = {input_list[second_left:second_right+1]}")
+    print(
+        f"rigth = {input_list[first_index:first_right+1]} , left = {input_list[second_left:second_right+1]}"
+    )
 
     while first_index <= first_right:
         # print(f"{first_index=}, {first_left=}, {second_index=}, {second_left=}")
@@ -86,29 +88,34 @@ def merge(input_list, first_left, first_right, second_left, second_right):
         first_part_element = input_list[first_index]
 
         if first_part_element < input_list[second_index]:
-            first_index +=1
+            first_index += 1
         else:
-            for i in range(second_left, second_right +1):
+            for i in range(second_left, second_right + 1):
                 if first_part_element > input_list[i]:
                     continue
                 else:
-                    input_list[first_index], input_list[i - 1] = input_list[i - 1], input_list[first_index]
-                    first_index +=1
+                    input_list[first_index], input_list[i - 1] = (
+                        input_list[i - 1],
+                        input_list[first_index],
+                    )
+                    first_index += 1
                     break
             else:
-                input_list[first_index], input_list[i] = input_list[i], input_list[first_index]
-                
+                input_list[first_index], input_list[i] = (
+                    input_list[i],
+                    input_list[first_index],
+                )
 
 
 def sort(input_list: list, left, right) -> list:
     if right == left:
-        return 
+        return
 
-    middle = (right + left )// 2
+    middle = (right + left) // 2
     # включая значения правой и левой границ
     # print(f"{left=}, {middle=}")
     sort(input_list, left, middle)
-        
+
     print(f"middle={ middle + 1}, {right=}")
     sort(input_list, middle + 1, right)
     merge(input_list, left, middle, middle + 1, right)
@@ -119,15 +126,15 @@ def sort(input_list: list, left, right) -> list:
 # print(x)
 
 
-
-x = [1,4,10,2,8, 15,200, 3, 7]
+x = [1, 4, 10, 2, 8, 15, 200, 3, 7]
 
 print(x)
 
+
 def merge(input_list, first_left, first_right, second_left, second_right):
 
-    right = input_list[first_left:first_right+1]
-    left = input_list[second_left:second_right+1]
+    right = input_list[first_left : first_right + 1]
+    left = input_list[second_left : second_right + 1]
     sorted_list = []
 
     print(f"rigth = {right} , left = {left}")
@@ -138,11 +145,9 @@ def merge(input_list, first_left, first_right, second_left, second_right):
 
         elif not left:
             sorted_list.append(right.pop(0))
- 
 
         elif right[0] < left[0]:
             sorted_list.append(right.pop(0))
-
 
         elif left[0] < right[0]:
             sorted_list.append(left.pop(0))
@@ -150,40 +155,30 @@ def merge(input_list, first_left, first_right, second_left, second_right):
         else:
             raise Exception("Unexpected condition")
 
-    input_list[first_left:second_right+1] = sorted_list
+    input_list[first_left : second_right + 1] = sorted_list
 
-    
 
 # merge(x, 0, 2, 3, 4)
 
 
-
 def sort(input_list: list, left, right) -> list:
     if right == left:
-        return 
+        return
 
-    middle = (right + left )// 2
+    middle = (right + left) // 2
     # включая значения правой и левой границ
     # print(f"{left=}, {middle=}")
     sort(input_list, left, middle)
-        
+
     # print(f"middle={ middle + 1}, {right=}")
     sort(input_list, middle + 1, right)
-    
+
     merge(input_list, left, middle, middle + 1, right)
 
 
 print("start")
 sort(x, 0, len(x) - 1)
 print(x)
-
-
-
-
-
-
-
-
 
 
 """
@@ -203,8 +198,8 @@ def sort(input_list: list, left, right) -> list:
 
     print(f"{left=}, {right=}, {middle=}")
 
-    l = input_list[left:middle] # левая половина больше правой
-    r = input_list[middle: right+1]
+    l = input_list[left:middle]  # левая половина больше правой
+    r = input_list[middle : right + 1]
 
     print(f"{l=}, {r=}")
 
@@ -212,16 +207,18 @@ def sort(input_list: list, left, right) -> list:
     for i in range(left, middle):
 
         if i + middle < len(input_list) and input_list[i] > input_list[i + middle]:
-            print("changing... ", input_list[i], " and " , input_list[i + middle] )
+            print("changing... ", input_list[i], " and ", input_list[i + middle])
 
-            input_list[i], input_list[i + middle] = input_list[i + middle], input_list[i]
+            input_list[i], input_list[i + middle] = (
+                input_list[i + middle],
+                input_list[i],
+            )
 
     return input_list
 
 
-
 def sort_2(input_list: list, left, right) -> list:
-    print(input_list[left:right+1])
+    print(input_list[left : right + 1])
 
     if len(input_list) == 1:
         return input_list
@@ -233,7 +230,7 @@ def sort_2(input_list: list, left, right) -> list:
     print(f"{left=}, {right=}, {middle=}")
 
     print("call l_sort")
-    l = sort_2(input_list, left, middle -1) # правая половина больше левой
+    l = sort_2(input_list, left, middle - 1)  # правая половина больше левой
     print("call r_sort")
     r = sort_2(input_list, middle, right)
 
@@ -243,12 +240,14 @@ def sort_2(input_list: list, left, right) -> list:
     for i in range(left, middle):
 
         if i + middle < len(input_list) and input_list[i] > input_list[i + middle]:
-            print("changing... ", input_list[i], " and " , input_list[i + middle] )
+            print("changing... ", input_list[i], " and ", input_list[i + middle])
 
-            input_list[i], input_list[i + middle] = input_list[i + middle], input_list[i]
+            input_list[i], input_list[i + middle] = (
+                input_list[i + middle],
+                input_list[i],
+            )
 
     return input_list
-
 
 
 # print(sort_2(x, 0, len(x) - 1))

@@ -29,19 +29,20 @@ from typing import List
 
 from typing import List
 
+
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
 
         target = []
 
-        if len(nums) ==1:
+        if len(nums) == 1:
             return [nums[:]]
 
         for _ in nums:
 
             n = nums.pop(0)
 
-            perms =  self.permute(nums)
+            perms = self.permute(nums)
 
             for p in perms:
                 p.append(n)
@@ -51,7 +52,6 @@ class Solution:
             nums.append(n)
 
         return target
-
 
 
 class Solution:
@@ -68,7 +68,7 @@ class Solution:
             el = nums.pop()
 
             for t in target:
-                for index in range(len(t)+1):
+                for index in range(len(t) + 1):
                     temp_target.append(t[0:index] + [el] + t[index:])
 
             target = temp_target
@@ -76,9 +76,6 @@ class Solution:
         return target
 
 
-
-
 s = Solution()
 
-print(s.permute([1,2,3,4]), len(s.permute([1,2,3,4])))
-
+print(s.permute([1, 2, 3, 4]), len(s.permute([1, 2, 3, 4])))

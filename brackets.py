@@ -8,9 +8,8 @@
 не являлась ПСП."""
 
 
-
-
 brackets = {"{": "}", "(": ")", "[": "]"}
+
 
 def is_brackets_valid(input_string: str) -> bool:
 
@@ -28,35 +27,30 @@ def is_brackets_valid(input_string: str) -> bool:
     return not bool(stack)
 
 
+print(is_brackets_valid("()()("))
 
-print (is_brackets_valid("()()("))
+print(is_brackets_valid("()()()"))
 
-print (is_brackets_valid("()()()"))
+print(is_brackets_valid("[(3 + 6)()]"))
 
-print (is_brackets_valid("[(3 + 6)()]"))
-
-print (is_brackets_valid("[(3 + } 6)()]"))
-
+print(is_brackets_valid("[(3 + } 6)()]"))
 
 
-pairs = {
-            ")": "(",
-            "]": "[",
-            "}": "{"
-            }
+pairs = {")": "(", "]": "[", "}": "{"}
+
 
 def check(s):
 
     stack = []
     for c in s:
         stack.append(c)
-        if len ( stack ) > 1 and c in pairs.keys() and stack[ -2] == pairs [c]:
-            stack.pop ()
-            stack.pop ()
-    if len ( stack ) == 0:
-            print ("yes ")
-    else :
-            print ("no ")
+        if len(stack) > 1 and c in pairs.keys() and stack[-2] == pairs[c]:
+            stack.pop()
+            stack.pop()
+    if len(stack) == 0:
+        print("yes ")
+    else:
+        print("no ")
 
 
 check("()()(")

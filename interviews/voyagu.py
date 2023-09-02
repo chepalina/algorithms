@@ -1,4 +1,4 @@
-#Suggest a solution to find the number of adults by name in a database
+# Suggest a solution to find the number of adults by name in a database
 
 # create table persons (id int UNIQUE , name varchar NOT NULL , date_of_birth date);
 # create primary key id;
@@ -33,8 +33,8 @@ def find_target(nums: list, target: int) -> list:
         seen[diff] = index
         print(seen)
 
-
     return None
+
 
 # 3: 0 2: 1
 
@@ -46,9 +46,9 @@ assert find_target([2, 2, 3], 4) in [[0, 1], [1, 0]]
 assert find_target([2, 2], 4) in [[0, 1], [1, 0]]
 assert find_target([8, 7, 2, 5, 3, 1], 10) in [[0, 2], [2, 0], [1, 4], [4, 1]]
 assert find_target([1234, 5678, 9012], 14690) == [1, 2]
-assert find_target([2,7,11,15], 9) == [0, 1]
-assert find_target([3,2,4], 6) == [1, 2]
-assert find_target([3,3], 6) == [0, 1]
+assert find_target([2, 7, 11, 15], 9) == [0, 1]
+assert find_target([3, 2, 4], 6) == [1, 2]
+assert find_target([3, 3], 6) == [0, 1]
 assert find_target([1, 4, 45, 6, 10, 8], 16) == [3, 4]
 assert find_target([0, 6], 6) == [0, 1]
 assert find_target([6], 6) is None

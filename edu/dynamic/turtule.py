@@ -81,15 +81,14 @@ def max_cost(array: list[list[int]]):
 
     print("left - ", dp)
 
-
     # динамика
     for i in range(1, len(dp)):
         for j in range(1, len(dp[i])):
-            dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + array[i][j]
+            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + array[i][j]
 
     print("full - ", dp)
 
-    i, j = len(dp)-1, len(dp[0])-1
+    i, j = len(dp) - 1, len(dp[0]) - 1
 
     while i > 0 or j > 0:
         if i == 0:
@@ -98,7 +97,7 @@ def max_cost(array: list[list[int]]):
         elif j == 0:
             path.append("D")
             i -= 1
-        elif dp[i-1][j] > dp[i][j-1]:
+        elif dp[i - 1][j] > dp[i][j - 1]:
             path.append("D")
             i -= 1
         else:
@@ -109,12 +108,13 @@ def max_cost(array: list[list[int]]):
     return dp[-1][-1], " ".join(path)
 
 
-arr = ["9 9 9 9 9".split(" "),
-       "3 0 0 0 0".split(" "),
-       "9 9 9 9 9".split(" "),
-       "6 6 6 6 8".split(" "),
-       "9 9 9 9 9".split(" "),
-       ]
+arr = [
+    "9 9 9 9 9".split(" "),
+    "3 0 0 0 0".split(" "),
+    "9 9 9 9 9".split(" "),
+    "6 6 6 6 8".split(" "),
+    "9 9 9 9 9".split(" "),
+]
 
 for item in arr:
     for j in range(len(item)):

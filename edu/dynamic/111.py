@@ -19,7 +19,7 @@ def thee_ones(n: int):
 
     res = 0
 
-    for _ in range(4, n+1):
+    for _ in range(4, n + 1):
         res = first + second + third
         first, second, third = second, third, res
 

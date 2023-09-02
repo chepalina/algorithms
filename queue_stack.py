@@ -30,6 +30,7 @@ n O(n)
 
 from typing import Any
 
+
 class QueueStack:
     def __init__(self):
         self._stack = []  # для добавления элементов
@@ -39,7 +40,7 @@ class QueueStack:
         self._stack.append(element)
 
     def pop(self) -> Any:
-        
+
         if not self._reverse_stack and self._stack:
             self._stack.reverse()
             self._reverse_stack.extend(self._stack)

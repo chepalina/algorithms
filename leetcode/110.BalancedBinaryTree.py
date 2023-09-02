@@ -11,9 +11,7 @@ class Solution:
         if not root:
             return True
 
-
         return abs(self.maxDepth(root.left) - self.maxDepth(root.right)) <= 1
-
 
     def maxDepth(self, root):
 
@@ -21,5 +19,3 @@ class Solution:
             return 0
 
         return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
-
-

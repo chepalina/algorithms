@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
 
@@ -9,7 +10,7 @@ class Solution:
 
         for n in nums:
             el_count = dict_nums.get(n, 0)
-            dict_nums[n] = el_count+1
+            dict_nums[n] = el_count + 1
 
         print(dict_nums)
 
@@ -33,12 +34,6 @@ class Solution:
 
         return target
 
+
 s = Solution()
-print(s.permute([1,1,3]))
-
-
-
-
-
-
-
+print(s.permute([1, 1, 3]))

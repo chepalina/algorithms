@@ -4,7 +4,7 @@
 from xml.dom import minicompat
 
 
-x = [1,5,3,9,2,4,11]
+x = [1, 5, 3, 9, 2, 4, 11]
 
 
 def sort(input_list: list) -> list:
@@ -32,22 +32,21 @@ def sort(input_list: list) -> list:
             sorted.append(min_element + num)
 
     return sorted
-        
+
 
 print(sort(x))
 
 
+x = [1, 3, 2]
 
-x = [1,3,2]
-
-min_e , max_e = min (x ) , max (x )
-cnt = [0] * ( max_e - min_e + 1)
+min_e, max_e = min(x), max(x)
+cnt = [0] * (max_e - min_e + 1)
 for v in x:
-    cnt [v - min_e ] += 1
+    cnt[v - min_e] += 1
 k = 0
-for i in range ( len ( cnt ) ):
-    for c in range ( cnt [ i ]) :
-        x[k ] = i + min_e
+for i in range(len(cnt)):
+    for c in range(cnt[i]):
+        x[k] = i + min_e
         k += 1
 
-print (" ". join ( map (str , x)) )
+print(" ".join(map(str, x)))

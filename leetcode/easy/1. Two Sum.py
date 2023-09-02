@@ -8,17 +8,14 @@ class Solution:
         # nums = nums = [], target = 2 -> []
         # nums = nums = [0], target = 2 -> []
 
-
         remainder_dict = {}
 
         for index, element in enumerate(nums):
             pair_index = remainder_dict.get(element)
 
             if pair_index is None:
-                remainder_dict[target-element] = index
+                remainder_dict[target - element] = index
             else:
                 return [pair_index, index]
 
-
         return []
-

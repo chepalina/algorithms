@@ -5,7 +5,7 @@ class Solution:
         # '' -> True
         # '({)}' - > False
 
-        brackets_mapping = {"}": "{", "]": "[",")": "("}
+        brackets_mapping = {"}": "{", "]": "[", ")": "("}
 
         stack = []
 
@@ -25,7 +25,6 @@ class Solution:
                 raise Exception("Unknown symbol")
 
         return not stack
-
 
 
 print([].pop())

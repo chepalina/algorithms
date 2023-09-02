@@ -14,43 +14,41 @@
 Выведите сумму ρi, j по всем 1 ≤ i < j ≤ n."""
 
 
-
 def stat(array: list) -> int:
 
     # Сложность O(1)
     stops_count = len(array)
-    dp = [[0]*stops_count for _ in array]
+    dp = [[0] * stops_count for _ in array]
 
     # O(N)
-    for i in range(stops_count-1):
+    for i in range(stops_count - 1):
         dp[i][i] = 0
-        dp[i][i+1] = 1
+        dp[i][i + 1] = 1
 
     # O(N*N)
-    for i in range(stops_count-3, -1, -1):
-        for j in range(i+2, stops_count):
-            print(i,j)
-            if array[i] >= j+1:
-                dp[i][j] = dp[i+1][j]
+    for i in range(stops_count - 3, -1, -1):
+        for j in range(i + 2, stops_count):
+            print(i, j)
+            if array[i] >= j + 1:
+                dp[i][j] = dp[i + 1][j]
             else:
-                dp[i][j] = dp[i+1][j] + 1
+                dp[i][j] = dp[i + 1][j] + 1
 
     print(dp)
 
     # O(N*N)
     tickets_sum = 0
-    for i in range(0,stops_count):
-        for j in range(i+1,stops_count):
+    for i in range(0, stops_count):
+        for j in range(i + 1, stops_count):
             tickets_sum += dp[i][j]
 
     return tickets_sum
+
 
 # O(N) + O(N*N) -> O(N*N)
 
 # print([i for i in range(5-2, -1, -1)])
 
 
-
-
-assert stat([4,4,4,0]) == 6
+assert stat([4, 4, 4, 0]) == 6
 assert stat([2, 3, 5, 5, 0]) == 17, stat([2, 3, 5, 5, 0])

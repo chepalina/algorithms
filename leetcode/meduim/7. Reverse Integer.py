@@ -6,22 +6,20 @@ class Solution:
 
         iter = 0
         target = 0
-        sign = x//abs(x)
+        sign = x // abs(x)
         x = abs(x)
 
         while x > 0:
             if iter == 10:
                 if x > 2:
                     return 0
-                if x == 2 and sign ==1 and target > 147483647:
+                if x == 2 and sign == 1 and target > 147483647:
                     return 0
-                if x == 2 and sign ==-1 and target > 147483648:
+                if x == 2 and sign == -1 and target > 147483648:
                     return 0
 
-
-            target = target * 10 + x%10
-            x = x//10
+            target = target * 10 + x % 10
+            x = x // 10
             iter += 1
 
-        return target*sign
-
+        return target * sign
