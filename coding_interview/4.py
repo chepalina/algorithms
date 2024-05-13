@@ -478,12 +478,13 @@ class Node48:
 
 
 tree_48 = Node48(
-    value=3, left=Node48(value=1), right=Node48(value=5, left=Node48(6), right=Node48(value=8))
+    value=3,
+    left=Node48(value=1),
+    right=Node48(value=5, left=Node48(6), right=Node48(value=8)),
 )
 
 
-tree_48_small = Node48(
-    value=3, left=Node48(value=1), right=Node48(value=5))
+tree_48_small = Node48(value=3, left=Node48(value=1), right=Node48(value=5))
 
 
 def common_ancestor(root: "Node48", p: "Node48", q: "Node48"):
@@ -526,11 +527,13 @@ print(common_ancestor(tree_48, Node48(6), Node48(8)))
 
 # 4.9 BST Sequence
 
-tree_49 = NodeLR(
-    value=2, left=NodeLR(value=1), right=NodeLR(value=3))
+tree_49 = NodeLR(value=2, left=NodeLR(value=1), right=NodeLR(value=3))
 
 tree_49_big = NodeLR(
-    value=50, left=NodeLR(value=20, right=NodeLR(value=25)), right=NodeLR(value=60, right=NodeLR(value=70)))
+    value=50,
+    left=NodeLR(value=20, right=NodeLR(value=25)),
+    right=NodeLR(value=60, right=NodeLR(value=70)),
+)
 
 
 result49 = []
@@ -538,8 +541,8 @@ result49 = []
 
 #  4.9 sub problem - two list combinations
 
-list1 = [1,2]
-list2 = [3,4]
+list1 = [1, 2]
+list2 = [3, 4]
 
 
 def weave(first: list, second: list, results: list, prefix: list):
@@ -574,6 +577,7 @@ def weave(first: list, second: list, results: list, prefix: list):
 #
 # print(results49)
 
+
 def all_seq(root: "NodeLR"):
 
     result = []
@@ -604,11 +608,9 @@ print(r)
 # 4.10 check_subtree()
 
 
-t1_4_10 = NodeLR(
-    value=2, left=NodeLR(value=1), right=NodeLR(value=3))
+t1_4_10 = NodeLR(value=2, left=NodeLR(value=1), right=NodeLR(value=3))
 
 t2_4_10 = NodeLR(value=1)
-
 
 
 def check_subtree(t1: NodeLR, t2: NodeLR):
@@ -623,8 +625,8 @@ def check_subtree(t1: NodeLR, t2: NodeLR):
 
     print(l1, l2)
 
-    s1 = ''.join(l1)
-    s2 = ''.join(l2)
+    s1 = "".join(l1)
+    s2 = "".join(l2)
     return s2 in s1
 
 
@@ -639,6 +641,279 @@ def get_preorder(t: NodeLR, l: list):
     get_preorder(t.left, l)
 
 
-
 assert check_subtree(t1_4_10, t2_4_10) is True
+
+
+# --------------------------
+# --------------------------
+# --------2 0 2 4-----------
+# --------------------------
+# --------------------------
+
+# 4.11
+@dataclass()
+class TreeNode:
+
+    data: int
+    left: "TreeNode" = None
+    right: "TreeNode" = None
+    size: int = 1
+
+    def __repr__(self):
+        return f"{self.data}: {self.size}"
+
+    def insert(self, d: int):
+        if d < self.data:
+            if self.left is None:
+                self.left = TreeNode(d)
+
+            else:
+                self.left.insert(d)
+        else:
+            if self.right is None:
+                self.right = TreeNode(d)
+            else:
+                self.right.insert(d)
+
+        self.size += 1
+
+    def get_node(self, i:int):
+        left_size = self.left.size if self.left else 0
+
+        if i < left_size:
+            return self.left.get_node(i)
+        elif i == left_size:
+            return self
+        else:
+            print(i, i - (left_size+1))
+            return self.right.get_node(i - (left_size+1))
+
+
+from random import randint
+
+
+@dataclass()
+class Tree:
+
+    root: TreeNode = None
+
+    def size(self):
+        return self.root.size if self.root else 0
+
+    def get_random(self):
+        if self.root is None:
+            return None
+
+        rand_int = randint(0, self.size()-1)
+        return self.root.get_node(rand_int)
+
+    def insert(self, value: int):
+        if self.root is None:
+            self.root = TreeNode(value)
+        else:
+            self.root.insert(value)
+
+
+# print("----------------4.11 exzmple--------------")
+# t = Tree()
+# t.insert(20)
+# t.insert(10)
+# t.insert(30)
+# t.insert(5)
+# t.insert(15)
+# t.insert(35)
+# t.insert(3)
+# t.insert(7)
+#
+#
+# for i in inorder_gen(t.root):
+#     print(i)
+# node = t.get_random()
+# print(node.data)
+
+print("----------------4.12 exzmple--------------")
+
+
+tree_412 = NodeLR(10, left=NodeLR(5, left=NodeLR(3, left=NodeLR(3),right=NodeLR(-2)),right=NodeLR(1, right=NodeLR(2))),right=NodeLR(-3,right=NodeLR(11, right=NodeLR(-8, right=NodeLR(8)))))
+
+
+def count_path(root: NodeLR, target_sum: int):
+
+    hash_ = {}
+
+    path = count_path_rec(root, target_sum, hash_, 0)
+    print(hash_)
+    return path
+
+
+
+
+
+def count_path_rec(node:NodeLR, target_sum: int, path_count: dict, running_sum: int):
+
+    if node is None:
+        return 0
+
+    running_sum += node.value
+    sum_ = running_sum - target_sum
+    total_path = path_count.get(sum_, 0)
+
+    if running_sum == target_sum:
+        total_path += 1
+
+    increment_hash(path_count, running_sum, 1)
+    total_path += count_path_rec(node.left, target_sum, path_count, running_sum)
+    total_path += count_path_rec(node.right, target_sum, path_count, running_sum)
+    increment_hash(path_count, running_sum, -1)
+
+    print(node.value, total_path)
+
+    return total_path
+
+
+
+def increment_hash(hash_: dict, key: int, value:int):
+    current = hash_.get(key, 0)
+    hash_[key] = current + value
+
+
+
+print(count_path(tree_412, 8))
+
+
+ex_list = [10, 5, 3, 0, 8, -8, 1, 1]
+
+
+def count_path_list(l: list, target_sum: int):
+    running_sum = 0
+    running_sums = {}
+    total_path = 0
+
+    for e in l:
+        running_sum += e
+
+        if running_sum == target_sum:
+            total_path += 1
+
+        sum_ = running_sum - target_sum
+        total_path += running_sums.get(sum_, 0)
+        increment_hash(running_sums, running_sum, 1)
+        print(e, total_path)
+
+    print(running_sums)
+    return total_path
+
+
+# print(count_path_list(ex_list, 8))
+
+
+print("------------------2 version -------------")
+
+
+ex_list2 = [10, 5, 3, 0, 8, -8, 1, 1]
+ex_listr = [ 0, 0, 1, 2, 4, 5, 5, 5]
+
+
+def count_path_list_2(list_: list, target_sum: int):
+    _hash = {}
+    target_path = 0
+    running_sum = 0
+
+
+    for l in list_:
+        running_sum += l
+
+        if running_sum == target_sum:
+            target_path += 1
+
+        temp_sum = running_sum - target_sum
+        target_path += _hash.get(temp_sum, 0)
+
+        rs_count = _hash.get(running_sum, 0)
+        _hash[running_sum] = rs_count + 1
+
+        print(running_sum, temp_sum, rs_count, target_path)
+        print(_hash)
+
+    print(target_path)
+
+
+count_path_list_2(ex_list2, 8)
+
+
+print("------------------3 version -------------")
+
+
+ex_list3 = [8, -8, 5, 3, 0, 8, -8, 1, 1]
+ex_list_ = [ 0, 0, 1, 2, 4, 5, 5, 5]
+
+
+def count_path_list_3(list_: list, target_sum: int):
+
+    running_sums = {}
+    target_path = 0
+    running_sum = 0
+
+
+    for l in list_:
+
+        if running_sum == target_sum:
+            target_path += 1
+
+        running_sum += l
+        temp_sum = running_sum - target_sum
+
+        target_path += running_sums.get(temp_sum, 0)
+
+        temp_count = running_sums.get(running_sum, 0)
+        running_sums[running_sum] = temp_count + 1
+
+
+    return target_path
+
+
+print(count_path_list_3(ex_list3, 8))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
