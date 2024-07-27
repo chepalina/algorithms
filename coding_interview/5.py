@@ -235,7 +235,7 @@ assert get_conversion(29, 15) == 2
 
 
 # 5.7 swap
-
+print("5.7------------------")
 print(bin(0xaaaaaaaa), bin(0x55555555))
 
 
@@ -243,13 +243,17 @@ def swap(n: int):
     return ((n & 0xaaaaaaaa) >> 1) | ((n & 0x55555555) << 1)
 
 
-print(bin(100))
-print(bin(100 & 0xaaaaaaaa))
-print(bin(100 & 0x55555555))
-print(bin(swap(100)))
+# print(bin(100))
+# print(bin(100 & 0xaaaaaaaa))
+# print(bin(100 & 0x55555555))
+# print(bin(swap(100)))
 
+print("5.8------------------")
 
+def draw_line(screen: list, width: int, x1: int, x2: int, y: int):
+    pass
 
+print(bin(0XFF))
 
 
 
