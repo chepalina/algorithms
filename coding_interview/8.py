@@ -392,7 +392,7 @@ def generate_parens(n: int) -> list:
 print(generate_parens(3))
 
 
-# ---------------8.19------------------------
+# ---------------8.10------------------------
 # paint fill
 # 1 1 1 2
 # 2 1 1 1
@@ -428,3 +428,210 @@ def fill_screen(screen: list, pixel: tuple, color: int):
 
 
 assert fill_screen(screen_ex, (2, 0), 3) == [[1, 1, 1, 2], [3, 1, 1, 1], [3, 3, 1, 1]]
+
+
+# ---------------8.11------------------------
+# coins
+
+
+def calculate_coins(n: int) -> int:
+    # 1/2
+    # 7 -> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    #      0  1  2  2  3  3  4  4  5  5  6
+    #4 -> 1 1 1 1 / 1 1 2/ 2 2
+    #6 -> 111111/11112/1122/222
+    #10 1111111111/111111112/11111122/1111222/112222/22222
+
+    dp = [0]*(n+1)
+    dp[1] = 1
+
+    for i in range(2,n+1):
+        # обработка единички
+        dp[i] = dp[i-1]
+
+        if i%5==0:
+            dp[i] += 1
+        if i%10==0:
+            dp[i] += 1
+        if i%25==0:
+            dp[i] += 1
+
+    return dp[-1]
+
+
+assert calculate_coins(5) == 2
+
+
+denoms = [1,5,10,15]
+
+
+def make_change(n: int, denoms: list):
+    dp =[0]* len(denoms)
+    dp = [dp.copy() for _ in range((n+1))]
+
+    def rec(total: int, denoms: list, index: int, dp_map: list):
+        if dp_map[total][index] > 0:
+            return dp_map[total][index]
+
+        coin = denoms[index]
+        if index == len(denoms) - 1:
+            r = total%coin
+            return 1 if r == 0 else 0
+
+        num_of_ways, amount = 0, 0
+
+        while amount <= total:
+            num_of_ways += rec(total-amount, denoms, index+1, dp_map)
+            amount+=coin
+
+        dp_map[total][index] = num_of_ways
+        return num_of_ways
+
+    return rec(n, denoms, 0, dp)
+
+
+print(calculate_coins(50), make_change(50, denoms))
+
+
+# ---------------8.12------------------------
+# queens
+
+
+
+def place_queens():
+    grid_size = 8
+
+    def check_valid(columns: list, row1: int, col1: int):
+        for row2 in range(row1):
+
+            col2 = columns[row2]
+            if col1 == col2:
+                return False
+
+            if abs(col2-col1) == row1-row2:
+                return False
+
+        return True
+
+    def place(row: int, columns: list, results: list):
+        if row == grid_size:
+            results.append(columns[:])
+
+        else:
+            for col in range(grid_size):
+                if check_valid(columns, row, col):
+                    columns[row] = col
+                    place(row+1, columns, results)
+
+    result = []
+    columns = [0]*grid_size
+    place(0, columns, result)
+    print(result)
+
+
+place_queens()
+
+
+
+
+
+
+
+
+# ---------------8.13------------------------
+# boxes
+from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class Box:
+    height: int
+    weight: int
+    depth: int
+
+    def can_be_above(self, oth: "Box"):
+        return self.height < oth.height and self.weight < oth.weight and self.depth < oth.depth
+
+
+boxes_ex = [Box(1,1,1), Box(2,2,2), Box(5,5,5), Box(2,2,2)]
+
+
+def create_stack(boxes: list):
+    boxes.sort(key=lambda b: b.height, reverse=True)
+    print(boxes)
+    stack_map = [0]*len(boxes)
+
+    def rec(boxes: list["Box"], bottom: Optional["Box"], offset: int, stack_map: list):
+        if offset >= len(boxes):
+            return 0
+
+        new_bottom = boxes[offset]
+        height_with = 0
+        if bottom is None or new_bottom.can_be_above(bottom):
+            if stack_map[offset] == 0:
+                stack_map[offset] = rec(boxes, new_bottom, offset + 1, stack_map)
+                stack_map[offset] += new_bottom.height
+
+            height_with = stack_map[offset]
+
+        height_without = rec(boxes, bottom, offset+1, stack_map)
+
+        return max(height_with, height_without)
+
+    res = rec(boxes, None, 0, stack_map)
+    print(stack_map)
+    return res
+
+
+print(create_stack(boxes_ex))
+
+
+# ---------------8.13------------------------
+# bool evaluation
+
+
+def eval_bool(s: str, res: bool, memo: dict ) -> int:
+    if not s: return 0
+    if len(s) == 1: return 1 if bool(s=="1") == res else 0
+    if memo.get((res, s)) is not None: return memo[(res, s)]
+
+    ways = 0
+    for i in range(1, len(s), 2):
+        left = s[0:i]
+        right = s[i+1:]
+        left_true = eval_bool(left, True, memo)
+        left_false = eval_bool(left, False, memo)
+        right_true = eval_bool(right, True, memo)
+        right_false = eval_bool(right, False, memo)
+        total = (left_true+left_false)*(right_true+right_false)
+
+        c = s[i]
+        total_true = 0
+        if c == "^":
+            total_true = (left_true*right_false) + (left_false*right_true)
+        if c == "&":
+            total_true = left_true*right_true
+        if c == "|":
+            total_true = (left_true*right_true) + (left_false*right_true) + (left_true*right_false)
+
+        total_false = total-total_true
+        sub_ways = total_true if res else total_false
+        ways += sub_ways
+
+
+    memo[(res, s)] = ways
+    return ways
+
+
+print("---------------------------")
+
+
+s = "1^0|0|1"
+memo = {}
+assert eval_bool("1^0|0|1", False, memo) == 2
+assert eval_bool("0&0&0&1^1|0", True, memo) == 10
+
+
+
+
+
